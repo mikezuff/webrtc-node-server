@@ -20,10 +20,11 @@ app.get('/:room', (req, res) => {
 
 io.on('connection', socket => {
     socket.on('join-room', (roomId, userId) => {
-        console.log('joined room', roomId, userId)
+        console.log('User', userId, 'joined room', roomId)
         
         // https://socket.io/docs/v3/rooms/
         socket.join(roomId)
+
         // had to drop broadcast here because it was causing an error
         //socket.to(roomId).broadcast.emit('user-connected', userId)
         // TypeError: Cannot read properties of undefined (reading 'emit')
